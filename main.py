@@ -54,7 +54,6 @@ def explain_predictions(probability,input_dic, surname):
   "Based on the machine learning model's prediction and top 10 most important features",
   just explain the prediction."""
   
-  print("EXPLANATION PROMPT", prompt)
   raw_response = client.chat.completions.create(
     model="openai/gpt-oss-20b",
     messages=[{
@@ -88,7 +87,6 @@ def generate_email(probability,input_dict,surname,explanation):
   "role": "user",
   "content": prompt
   }],)
-  print("\n\nEMAIL PROMPT", prompt)
   return  raw_response.choices[0].message.content
 
 
@@ -187,7 +185,6 @@ customers = [
 st_customers = st.selectbox("Select a customer:", customers)
 if st_customers:
     customerId = int(st_customers.split("-")[0])
-    print("selected customer id", customerId)
     selected_customer = df.loc[df['CustomerId'] == customerId].iloc[0]
     col1, col2 = st.columns(2)
     with col1:
